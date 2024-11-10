@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlazeVault Store</title>
+    <style>
+        /* Background and primary color theme */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #800080, #00c779); /* Purple to green gradient */
+            color: #ccc; /* Light gray text */
+        }
+        header {
+            background-image: url('ddd1.jpeg'); /* Background image for the header */
+            background-size: cover; /* Make the image cover the entire header */
+            background-position: center center; /* Center the image */
+            color: white;
+            padding: 100px 20px; /* Add padding for better visibility */
+            text-align: center;
+            font-size: 2.5em; /* Increased font size */
+            height: 250px; /* Fixed height for the header */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #111;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #00c779; /* Hover color matches the green from gradient */
+        }
+        .highlight {
+            background-color: #00c779; /* Green highlight for selected link */
+            color: black; /* Change text color to black for visibility */
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack sections vertically */
+            align-items: center; /* Center items horizontally */
+            padding: 20px;
+            background-color: #000; /* Black background for the container */
+            border-radius: 10px;
+            margin: 20px;
+            color: #ccc; /* Light gray text for readability */
+        }
+        .section-row {
+            display: flex; /* Flexbox for two-column layout */
+            justify-content: space-between;
+            width: 100%; /* Full width of the container */
+            margin-bottom: 20px; /* Space between the rows */
+        }
+        .section {
+            width: 48%; /* Each section will take about half of the container */
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center; /* Center text alignment */
+            margin-bottom: 20px; /* Space between items */
+            position: relative; /* For positioning the button */
+        }
+        .special-section {
+            background-color: #444; /* Different background for the special section */
+            width: 70%; /* Make the special section wider */
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-top: 20px; /* Space above the special section */
+            position: relative; /* For positioning the button */
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+        .gemba-image, .lamba-image, .3d-image, .nwk1-image, .monti-image, .sesk-image, .30hade-image {
+            width: 100px; /* Adjust the size of the images */
+            height: auto;
+            margin: 10px 0;
+        }
+        p {
+            text-align: justify; /* Makes the text justified (evenly spaced) */
+            line-height: 1.6; /* Adds spacing between lines */
+            max-width: 800px; /* Limit width to prevent long lines of text */
+            margin: 0 auto 20px; /* Centers the paragraph with margin at the bottom */
+        }
+        .highlight {
+            background-color: #00c779; /* Green highlight */
+            color: #000; /* Black text for the highlighted part */
+            padding: 2px 4px; /* Adds some padding around the highlighted text */
+            font-weight: bold; /* Makes the highlighted text bold */
+        }
+        .item {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .item.highlight {
+            background-color: #00c779; /* Green highlight when clicked */
+        }
+        .buy-button {
+            background-color: #ff69b4; /* Ultra-pink color */
+            color: #000; /* Black text */
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            text-align: center; /* Center text alignment */
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        // Function to highlight the clicked item in the navigation bar
+        function highlightNavItem(selectedItem) {
+            // Get all navigation items
+            const navItems = document.querySelectorAll('nav a');
+            navItems.forEach(item => {
+                item.classList.remove('highlight'); // Remove the highlight class from all items
+            });
+            // Add highlight to the clicked item
+            selectedItem.classList.add('highlight');
+        }
+
+        function highlightItem(item) {
+            // Remove highlight from all items
+            const allItems = document.querySelectorAll('.item');
+            allItems.forEach(i => {
+                i.classList.remove('highlight');
+            });
+
+            // Remove the "BUY" button from all sections
+            const buyButtons = document.querySelectorAll('.buy-button');
+            buyButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+
+            // If item is selected, add highlight and display the "BUY" button
+            if (!item.classList.contains('highlight')) {
+                item.classList.add('highlight');
+                item.parentElement.querySelector('.buy-button').style.display = 'block';
+            }
+            else {
+                item.classList.remove('highlight');
+                item.parentElement.querySelector('.buy-button').style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body onload="highlightNavItem(document.querySelector('nav a'))">
+    <header>
+        <h1>BlazeVault Store</h1>
+    </header>
+    <nav>
+        <a href="#" onclick="highlightNavItem(this)">Home</a>
+        <a href="#" onclick="highlightNavItem(this)">Shop</a>
+        <a href="about.html" target="_blank" onclick="highlightNavItem(this)">About Us</a>
+        <a href="contact.html" target="_blank" onclick="highlightNavItem(this)">Contact</a>
+    </nav>
+    <div class="container">
+        <!-- Row with Diamond and Membership sections -->
+        <div class="section-row">
+            <div class="section">
+                <h2>Diamond Top-Up</h2>
+                <!-- All items in the Diamond section -->
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 57</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 115</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 150</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 310</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 625</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 925</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 1550</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 3150</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba" class="gemba-image">
+                    <p style="text-align: center; font-weight: bold;">Diamond x 6350</p>
+                </div>
+                <button class="buy-button" style="display: none;">BUY</button>
+            </div>
+
+            <!-- Membership Section -->
+            <div class="section">
+                <h2>Membership</h2>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="nwk1.png" alt="Weekly" class="nwk1-image">
+                    <p style="text-align: center; font-weight: bold;">Weekly</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="monti.png" alt="Monthly" class="monti-image">
+                    <p style="text-align: center; font-weight: bold;">Monthly</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="lamba.png" alt="Weekly Lite" class="lamba-image">
+                    <p style="text-align: center; font-weight: bold;">Weekly Lite</p>
+                </div>
+                <button class="buy-button" style="display: none;">BUY</button>
+            </div>
+        </div>
+        <!-- Special Section -->
+        <div class="special-section">
+            <h2>Special</h2>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="3d.png" alt="3D" class="3d-image">
+                <p style="text-align: center; font-weight: bold;">Evo Access 3D</p>
+            </div>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="sesk.png" alt="Evo Access 7D" class="sesk-image">
+                <p style="text-align: center; font-weight: bold;">Evo Access 7D</p>
+            </div>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="30hade.png" alt="Evo Access 30D" class="30hade-image">
+                <p style="text-align: center; font-weight: bold;">Evo Access 30D</p>
+            </div>
+            <button class="buy-button" style="display: none;">BUY</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 BlazeVault Store. All rights reserved. | Owner: Prabhash Laknindu Kulathunga
+    </footer>
+</body>
+</html>
