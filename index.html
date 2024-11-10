@@ -138,18 +138,89 @@
             background: rgba(0, 0, 0, 0.6);
             z-index: 999;
         }
+        /* Typing bar and access button styles */
+        .input-bar {
+            display: inline-block;
+            border-bottom: 2px solid #ccc;
+            padding: 5px;
+            width: 100px;
+            color: #00c779;
+            font-size: 20px;
+            font-family: monospace;
+            text-align: center;
+        }
+        .access-button {
+            background-color: #ff69b4;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .timer {
+            color: #ffcc00;
+            font-weight: bold;
+            margin-top: 10px;
+        }
     </style>
     <script>
         // Function to show the popup modal
         function showModal() {
             document.querySelector('.modal').style.display = 'block';
             document.querySelector('.modal-overlay').style.display = 'block';
+            startCountdown(); // Start the countdown when the modal is shown
         }
+
         // Function to hide the popup modal
         function hideModal() {
             document.querySelector('.modal').style.display = 'none';
             document.querySelector('.modal-overlay').style.display = 'none';
         }
+
+        // Countdown timer logic
+        let countdownTimer;
+        let countdownTime = 10; // Countdown starts at 10 seconds
+
+        function startCountdown() {
+            const timerElement = document.querySelector('.timer');
+            countdownTimer = setInterval(() => {
+                if (countdownTime <= 0) {
+                    clearInterval(countdownTimer);
+                } else {
+                    timerElement.textContent = `Try again in: ${countdownTime--}s`;
+                }
+            }, 1000);
+        }
+
+        // Function to check the access code
+        function checkAccessCode() {
+            const enteredCode = document.querySelector('.input-bar').value;
+            const errorMessage = document.querySelector('.error-message');
+
+            if (enteredCode === '3333') {
+                hideModal();
+            } else {
+                errorMessage.textContent = 'Invalid Code. Please try again.';
+                // Refresh the page after a short delay (2 seconds)
+                setTimeout(() => {
+                    location.reload();
+                }, 2000); // 2 seconds delay
+            }
+        }
+
+        // Ensure the modal shows when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showModal();
+
+            // Attach the check access button functionality
+            document.querySelector('.access-button').addEventListener('click', checkAccessCode);
+        });
 
         // Function to highlight the clicked item and show its buy button
         function highlightItem(item) {
@@ -167,11 +238,6 @@
             buyButton.style.display = 'block';
         }
 
-        // Attach showModal to buy buttons
-        document.addEventListener('DOMContentLoaded', () => {
-            const buyButtons = document.querySelectorAll('.buy-button');
-            buyButtons.forEach(button => button.addEventListener('click', showModal));
-        });
     </script>
 </head>
 <body>
@@ -251,8 +317,12 @@
     <!-- Modal for popup -->
     <div class="modal-overlay" onclick="hideModal()"></div>
     <div class="modal">
-        <h2>Coming Soon...</h2>
-        <p>Contact Prabhash Kulathunga</p>
+        <h2>Updating...</h2>
+        <p>Can't access, enter the code.</p>
+        <input type="text" class="input-bar" placeholder="Enter code..." />
+        <button class="access-button">Access</button>
+        <div class="error-message"></div>
+        <div class="timer">Try again in: 10s</div>
     </div>
 </body>
 </html>
