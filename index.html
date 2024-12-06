@@ -26,29 +26,21 @@
             justify-content: center;
             align-items: center;
         }
-        .sliding-text {
-            background-color: #111;
-            color: #00c779;
-            padding: 10px 0;
-            font-size: 1.2em;
-            text-align: center;
-            font-weight: bold;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
+        .rainbow-blink {
+            animation: rainbow 0.888s linear infinite, blink 0.888s step-start infinite;
         }
-        .sliding-text span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: slide 10s linear infinite;
+        @keyframes rainbow {
+            0% { color: red; }
+            16.7% { color: orange; }
+            33.3% { color: yellow; }
+            50% { color: green; }
+            66.7% { color: blue; }
+            83.3% { color: indigo; }
+            100% { color: violet; }
         }
-        @keyframes slide {
-            0% {
-                transform: translateX(100%);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
         nav {
             display: flex;
@@ -133,33 +125,52 @@
             cursor: pointer;
             margin-top: 20px;
             display: none;
+        }
+        .sliding-text {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
             text-align: center;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.2em;
+            overflow: hidden;
+            white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .sliding-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: slide 10s linear infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
     </style>
     <script>
-        // Function to highlight the clicked item and show its buy button
-        function highlightItem(item) {
-            // Remove highlight from all items
-            const allItems = document.querySelectorAll('.item');
-            allItems.forEach(i => i.classList.remove('highlight'));
+        document.addEventListener('DOMContentLoaded', () => {
+            const header = document.querySelector('header h1');
+            let typed = "";
 
-            // Hide all buy buttons
-            const buyButtons = document.querySelectorAll('.buy-button');
-            buyButtons.forEach(button => button.style.display = 'none');
+            document.addEventListener('keydown', (e) => {
+                typed += e.key.toLowerCase();
 
-            // Highlight the clicked item and show its associated buy button
-            item.classList.add('highlight');
-            const buyButton = item.closest('.section, .special-section').querySelector('.buy-button');
-            buyButton.style.display = 'block';
-        }
+                if (typed.includes("topa")) {
+                    header.textContent = "BLAZEVAULT STORE"; // Ensure the name is in uppercase
+                    header.classList.add('rainbow-blink');
+                    typed = ""; // Reset the typed string
+                }
+            });
+        });
     </script>
 </head>
 <body>
+    <!-- Sliding Text -->
     <div class="sliding-text">
-        <span>Payment Methods BINANCE - EZCASH - BANK. 100% True and Trusted. The best site Made in Sri Lanka. TopUp with BlazeVault Store.</span>
+        <span>Payment Methods: BINANCE - EZCASH - BANK | 100% True and Trusted. The best site Made in Sri Lanka. TopUp with BlazeVault Store!</span>
     </div>
+
     <header>
         <h1>BlazeVault Store</h1>
     </header>
@@ -181,18 +192,6 @@
                     <img src="gemba.png" alt="Gemba">
                     <p>Diamond x 115</p>
                 </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="gemba.png" alt="Gemba">
-                    <p>Diamond x 150</p>
-                </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="gemba.png" alt="Gemba">
-                    <p>Diamond x 310</p>
-                </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="gemba.png" alt="Gemba">
-                    <p>Diamond x 625</p>
-                </div>
                 <button class="buy-button">BUY</button>
             </div>
             <div class="section">
@@ -205,29 +204,16 @@
                     <img src="monti.png" alt="Monthly">
                     <p>Monthly</p>
                 </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="lamba.png" alt="Weekly Lite">
-                    <p>Weekly Lite</p>
-                </div>
                 <button class="buy-button">BUY</button>
             </div>
         </div>
-        <!-- Special Section -->
         <div class="special-section">
             <h2>Special</h2>
             <div class="item" onclick="highlightItem(this)">
                 <img src="3d.png" alt="Evo Access 3D">
                 <p>Evo Access 3D</p>
             </div>
-            <div class="item" onclick="highlightItem(this)">
-                <img src="sesk.png" alt="Evo Access 7D">
-                <p>Evo Access 7D</p>
-            </div>
-            <div class="item" onclick="highlightItem(this)">
-                <img src="30hade.png" alt="30 Days Evo">
-                <p>30 Days Evo</p>
-            </div>
-            <button class="buy-button" style="display: none;">BUY</button>
+            <button class="buy-button">BUY</button>
         </div>
     </div>
     <footer>
