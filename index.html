@@ -26,6 +26,30 @@
             justify-content: center;
             align-items: center;
         }
+        .sliding-text {
+            background-color: #111;
+            color: #00c779;
+            padding: 10px 0;
+            font-size: 1.2em;
+            text-align: center;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .sliding-text span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: slide 10s linear infinite;
+        }
+        @keyframes slide {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
         nav {
             display: flex;
             justify-content: center;
@@ -133,6 +157,9 @@
     </script>
 </head>
 <body>
+    <div class="sliding-text">
+        <span>Payment Methods BINANCE - EZCASH - BANK. 100% True and Trusted. The best site Made in Sri Lanka. TopUp with BlazeVault Store.</span>
+    </div>
     <header>
         <h1>BlazeVault Store</h1>
     </header>
