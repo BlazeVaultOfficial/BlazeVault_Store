@@ -1,65 +1,210 @@
-// Function to show the popup modal
-function showModal() {
-    document.querySelector('.modal').style.display = 'block';
-    document.querySelector('.modal-overlay').style.display = 'block';
-    startCountdown(); // Start the countdown when the modal is shown
-}
-
-// Function to hide the popup modal
-function hideModal() {
-    document.querySelector('.modal').style.display = 'none';
-    document.querySelector('.modal-overlay').style.display = 'none';
-}
-
-// Countdown timer logic
-let countdownTimer;
-let countdownTime = 10; // Countdown starts at 10 seconds
-
-function startCountdown() {
-    const timerElement = document.querySelector('.timer');
-    countdownTimer = setInterval(() => {
-        if (countdownTime <= 0) {
-            clearInterval(countdownTimer);
-        } else {
-            timerElement.textContent = `Try again in: ${countdownTime--}s`;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlazeVault Store</title>
+    <style>
+        /* Background and primary color theme */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #800080, #00c779);
+            color: #ccc;
         }
-    }, 1000);
-}
+        header {
+            background-image: url('ddd1.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            font-size: 2.5em;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #111;
+            padding: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #00c779;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #000;
+            border-radius: 10px;
+            margin: 20px;
+            color: #ccc;
+        }
+        .section-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .section {
+            width: 48%;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .special-section {
+            background-color: #444;
+            width: 70%;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+        }
+        .item {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .item img {
+            width: 100px;
+            height: auto;
+            margin: 10px 0;
+        }
+        .highlight {
+            border: 2px solid #00c779;
+            background-color: #444;
+        }
+        .buy-button {
+            background-color: #ff69b4;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+    <script>
+        // Function to highlight the clicked item and show its buy button
+        function highlightItem(item) {
+            // Remove highlight from all items
+            const allItems = document.querySelectorAll('.item');
+            allItems.forEach(i => i.classList.remove('highlight'));
 
-// Function to check the access code
-function checkAccessCode() {
-    const enteredCode = document.querySelector('.input-bar').value;
-    const errorMessage = document.querySelector('.error-message');
+            // Hide all buy buttons
+            const buyButtons = document.querySelectorAll('.buy-button');
+            buyButtons.forEach(button => button.style.display = 'none');
 
-    if (enteredCode === '3333') {
-        hideModal();
-    } else {
-        errorMessage.textContent = 'Invalid Code. Please try again.';
-        // Refresh the page after a short delay (2 seconds)
-        setTimeout(() => {
-            location.reload();
-        }, 2000); // 2 seconds delay
-    }
-}
-
-// Attach the check access button functionality
-document.addEventListener('DOMContentLoaded', () => {
-    // Removed showModal() here to prevent popup on page load
-    document.querySelector('.access-button').addEventListener('click', checkAccessCode);
-});
-
-// Function to highlight the clicked item and show its buy button
-function highlightItem(item) {
-    // Remove highlight from all items
-    const allItems = document.querySelectorAll('.item');
-    allItems.forEach(i => i.classList.remove('highlight'));
-
-    // Hide all buy buttons
-    const buyButtons = document.querySelectorAll('.buy-button');
-    buyButtons.forEach(button => button.style.display = 'none');
-
-    // Highlight the clicked item and show its associated buy button
-    item.classList.add('highlight');
-    const buyButton = item.closest('.section, .special-section').querySelector('.buy-button');
-    buyButton.style.display = 'block';
-}
+            // Highlight the clicked item and show its associated buy button
+            item.classList.add('highlight');
+            const buyButton = item.closest('.section, .special-section').querySelector('.buy-button');
+            buyButton.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>BlazeVault Store</h1>
+    </header>
+    <nav>
+        <a href="#" onclick="highlightNavItem(this)">Home</a>
+        <a href="#" onclick="highlightNavItem(this)">Shop</a>
+        <a href="about.html" target="_blank" onclick="highlightNavItem(this)">About Us</a>
+        <a href="contact.html" target="_blank" onclick="highlightNavItem(this)">Contact</a>
+    </nav>
+    <div class="container">
+        <div class="section-row">
+            <div class="section">
+                <h2>Diamond Top-Up</h2>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba">
+                    <p>Diamond x 57</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba">
+                    <p>Diamond x 115</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba">
+                    <p>Diamond x 150</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba">
+                    <p>Diamond x 310</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="gemba.png" alt="Gemba">
+                    <p>Diamond x 625</p>
+                </div>
+                <button class="buy-button">BUY</button>
+            </div>
+            <div class="section">
+                <h2>Membership</h2>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="nwk1.png" alt="Weekly">
+                    <p>Weekly</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="monti.png" alt="Monthly">
+                    <p>Monthly</p>
+                </div>
+                <div class="item" onclick="highlightItem(this)">
+                    <img src="lamba.png" alt="Weekly Lite">
+                    <p>Weekly Lite</p>
+                </div>
+                <button class="buy-button">BUY</button>
+            </div>
+        </div>
+        <!-- Special Section -->
+        <div class="special-section">
+            <h2>Special</h2>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="3d.png" alt="Evo Access 3D">
+                <p>Evo Access 3D</p>
+            </div>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="sesk.png" alt="Evo Access 7D">
+                <p>Evo Access 7D</p>
+            </div>
+            <div class="item" onclick="highlightItem(this)">
+                <img src="30hade.png" alt="30 Days Evo">
+                <p>30 Days Evo</p>
+            </div>
+            <button class="buy-button" style="display: none;">BUY</button>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 BlazeVault Store. All rights reserved. | Owner: Prabhash Laknindu Kulathunga
+    </footer>
+</body>
+</html>
