@@ -2,222 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlazeVault Store</title>
+    <title>Maintenance Page</title>
     <style>
-        /* Background and primary color theme */
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #800080, #00c779);
-            color: #ccc;
-        }
-        header {
-            background-image: url('ddd1.jpeg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-            font-size: 2.5em;
-            height: 250px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .rainbow-blink {
-            animation: rainbow 0.888s linear infinite, blink 0.888s step-start infinite;
-        }
-        @keyframes rainbow {
-            0% { color: red; }
-            16.7% { color: orange; }
-            33.3% { color: yellow; }
-            50% { color: green; }
-            66.7% { color: blue; }
-            83.3% { color: indigo; }
-            100% { color: violet; }
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #111;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #00c779;
-        }
-        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            background-color: #000;
-            border-radius: 10px;
-            margin: 20px;
-            color: #ccc;
-        }
-        .section-row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-        .section {
-            width: 48%;
-            background-color: #333;
-            padding: 20px;
-            border-radius: 8px;
-            color: white;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
             text-align: center;
-            margin-bottom: 20px;
+        }
+        .container {
             position: relative;
         }
-        .special-section {
-            background-color: #444;
-            width: 70%;
-            padding: 20px;
-            border-radius: 8px;
-            color: white;
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
+        .wrench {
+            font-size: 60px;
+            animation: rotate 2s infinite linear;
         }
-        footer {
-            background-color: #222;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
-            margin-top: 20px;
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-        .item {
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .item img {
-            width: 100px;
-            height: auto;
+        h1, h2 {
             margin: 10px 0;
         }
-        .highlight {
-            border: 2px solid #00c779;
-            background-color: #444;
-        }
-        .buy-button {
-            background-color: #ff69b4;
-            color: #000;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-            display: none;
-        }
-        .sliding-text {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-            font-size: 1.2em;
-            overflow: hidden;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .sliding-text span {
-            display: inline-block;
-            padding-left: 100%;
-            animation: slide 10s linear infinite;
-        }
-        @keyframes slide {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const header = document.querySelector('header h1');
-            let typed = "";
-
-            document.addEventListener('keydown', (e) => {
-                typed += e.key.toLowerCase();
-
-                if (typed.includes("topa")) {
-                    header.textContent = "BLAZEVAULT STORE"; // Ensure the name is in uppercase
-                    header.classList.add('rainbow-blink');
-                    typed = ""; // Reset the typed string
-                }
-            });
-        });
-    </script>
 </head>
 <body>
-    <!-- Sliding Text -->
-    <div class="sliding-text">
-        <span>Payment Methods: BINANCE - EZCASH - BANK | 100% True and Trusted. The best site Made in Sri Lanka. TopUp with BlazeVault Store!</span>
-    </div>
-
-    <header>
-        <h1>BlazeVault Store</h1>
-    </header>
-    <nav>
-        <a href="#" onclick="highlightNavItem(this)">Home</a>
-        <a href="#" onclick="highlightNavItem(this)">Shop</a>
-        <a href="about.html" target="_blank" onclick="highlightNavItem(this)">About Us</a>
-        <a href="contact.html" target="_blank" onclick="highlightNavItem(this)">Contact</a>
-    </nav>
     <div class="container">
-        <div class="section-row">
-            <div class="section">
-                <h2>Diamond Top-Up</h2>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="gemba.png" alt="Gemba">
-                    <p>Diamond x 57</p>
-                </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="gemba.png" alt="Gemba">
-                    <p>Diamond x 115</p>
-                </div>
-                <button class="buy-button">BUY</button>
-            </div>
-            <div class="section">
-                <h2>Membership</h2>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="nwk1.png" alt="Weekly">
-                    <p>Weekly</p>
-                </div>
-                <div class="item" onclick="highlightItem(this)">
-                    <img src="monti.png" alt="Monthly">
-                    <p>Monthly</p>
-                </div>
-                <button class="buy-button">BUY</button>
-            </div>
-        </div>
-        <div class="special-section">
-            <h2>Special</h2>
-            <div class="item" onclick="highlightItem(this)">
-                <img src="3d.png" alt="Evo Access 3D">
-                <p>Evo Access 3D</p>
-            </div>
-            <button class="buy-button">BUY</button>
-        </div>
+        <div class="wrench">🔧</div>
+        <h1>Site is on Maintenance</h1>
+        <h2>Contact owner Prabhash Kulathunga</h2>
+        <h3>BlazzeVaultStore</h3>
     </div>
-    <footer>
-        &copy; 2024 BlazeVault Store. All rights reserved. | Owner: Prabhash Laknindu Kulathunga
-    </footer>
 </body>
 </html>
